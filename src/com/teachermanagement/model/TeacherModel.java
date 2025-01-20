@@ -1,4 +1,5 @@
 package com.teachermanagement.model;
+
 /**
  *
  * @author SuyogShrestha23048669
@@ -15,7 +16,8 @@ public class TeacherModel {
     private String specialization;
 
     // Constructor
-    public TeacherModel(int teacherId, String teacherName, int par2, String email, String phoneNumber, String address, String mSc, String math) {
+    public TeacherModel(int teacherId, String teacherName, double salary, String email, 
+                        String phoneNumber, String address, String qualification, String specialization) {
         this.teacherId = teacherId;
         this.teacherName = teacherName;
         this.salary = salary;

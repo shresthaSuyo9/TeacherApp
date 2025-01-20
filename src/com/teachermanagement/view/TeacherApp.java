@@ -6,6 +6,10 @@ import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import com.teachermanagement.controller.datastructure.BinarySearch;  // For BinarySearch class
+import com.teachermanagement.controller.datastructure.InsertionSort;  // For InsertionSort class
+import com.teachermanagement.controller.datastructure.MergeSort;  // For MergeSort class
+import com.teachermanagement.controller.datastructure.SelectionSort; // For Selection Class
 
 /**
  *
@@ -62,6 +66,8 @@ public class TeacherApp extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         lblError = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
         pnlAboutUs = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -253,7 +259,7 @@ public class TeacherApp extends javax.swing.JFrame {
             }
         });
 
-        cmbSpecilization.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Specialization", "A.I.", "Computing", "Networking", "BBA", "Multimedia", "B.A.L.LB", " ", " " }));
+        cmbSpecilization.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Specialization", "AI", "Computing", "Networking", "BBA", "Multimedia", "BALLB", " ", " " }));
         cmbSpecilization.setBorder(javax.swing.BorderFactory.createTitledBorder("Specilization"));
         cmbSpecilization.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -282,10 +288,25 @@ public class TeacherApp extends javax.swing.JFrame {
             }
         });
 
+        jButton5.setBackground(new java.awt.Color(255, 102, 102));
         jButton5.setText("Delete");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Search");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton6.setText("Sort");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
             }
         });
 
@@ -295,82 +316,96 @@ public class TeacherApp extends javax.swing.JFrame {
             pnlStudentListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlStudentListLayout.createSequentialGroup()
                 .addGap(0, 16, Short.MAX_VALUE)
-                .addGroup(pnlStudentListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblTblStudentTitle)
-                    .addComponent(spTblStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 1194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGroup(pnlStudentListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(pnlStudentListLayout.createSequentialGroup()
+                        .addComponent(spTblStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 1194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(pnlStudentListLayout.createSequentialGroup()
+                        .addComponent(lblTblStudentTitle)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton6)
+                        .addGap(53, 53, 53)
+                        .addComponent(jButton2)
+                        .addGap(29, 29, 29))))
             .addGroup(pnlStudentListLayout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addGroup(pnlStudentListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtfldPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtfldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtfldTeacherid, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbSpecilization, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(167, 167, 167)
                 .addGroup(pnlStudentListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlStudentListLayout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addGroup(pnlStudentListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtfldPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtfldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtfldTeacherid, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbSpecilization, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(303, 303, 303)
                         .addGroup(pnlStudentListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtfldTeacherName, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtfldQualification, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(167, 167, 167)
-                        .addGroup(pnlStudentListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(pnlStudentListLayout.createSequentialGroup()
+                                .addComponent(cmbAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlStudentListLayout.createSequentialGroup()
+                                .addComponent(txtfldSalary, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlStudentListLayout.createSequentialGroup()
+                                .addComponent(txtfldQualification, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlStudentListLayout.createSequentialGroup()
+                                .addComponent(txtfldTeacherName, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(pnlStudentListLayout.createSequentialGroup()
-                        .addGroup(pnlStudentListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtfldSalary, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(167, 167, 167)
-                        .addGroup(pnlStudentListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(pnlStudentListLayout.createSequentialGroup()
-                .addGap(223, 223, 223)
-                .addComponent(lblError)
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(223, 223, 223)
+                        .addComponent(lblError)))
+                .addGap(215, 215, 215))
         );
         pnlStudentListLayout.setVerticalGroup(
             pnlStudentListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlStudentListLayout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(lblTblStudentTitle)
+                .addGap(33, 33, 33)
+                .addGroup(pnlStudentListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblTblStudentTitle)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(spTblStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
+                .addComponent(spTblStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblError)
                 .addGroup(pnlStudentListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtfldTeacherName, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtfldTeacherid, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pnlStudentListLayout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlStudentListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtfldTeacherName, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtfldTeacherid, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(30, 30, 30)
+                        .addGap(12, 12, 12)
+                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(pnlStudentListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlStudentListLayout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlStudentListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtfldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtfldQualification, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(25, 25, 25)
-                .addGroup(pnlStudentListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlStudentListLayout.createSequentialGroup()
-                        .addGroup(pnlStudentListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtfldPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtfldSalary, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(30, 30, 30)
                         .addGroup(pnlStudentListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cmbAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbSpecilization, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtfldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtfldQualification, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(pnlStudentListLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
+                        .addGap(33, 33, 33)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(pnlStudentListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlStudentListLayout.createSequentialGroup()
+                        .addGap(35, 35, 35)
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(59, 59, 59)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(220, Short.MAX_VALUE))
+                        .addGap(34, 34, 34)
+                        .addGroup(pnlStudentListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(pnlStudentListLayout.createSequentialGroup()
+                        .addGroup(pnlStudentListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlStudentListLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtfldPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30))
+                            .addGroup(pnlStudentListLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(txtfldSalary, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(37, 37, 37)))
+                        .addComponent(cmbSpecilization, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(148, 148, 148))
         );
 
         tabPaneMain.addTab("Admin Dashboard", pnlStudentList);
@@ -403,7 +438,7 @@ public class TeacherApp extends javax.swing.JFrame {
                     .addGroup(pnlAboutUsLayout.createSequentialGroup()
                         .addGap(179, 179, 179)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(132, Short.MAX_VALUE))
+                .addContainerGap(218, Short.MAX_VALUE))
         );
 
         tabPaneMain.addTab("About Us", pnlAboutUs);
@@ -634,9 +669,13 @@ public class TeacherApp extends javax.swing.JFrame {
     tblTeacher.setModel(model);
 
     // Example data for the table
-    registerTeacher(new TeacherModel(1, "Samir Adhikari", 50000, "Samir.4567@gmail.com", "9865327410", "Dallu", "MSc", "Mathematics"));
-    registerTeacher(new TeacherModel(2, "Suman Lama", 25000, "Suman.LAMA@gmail.com", "9876543210", "Dallu", "PhD", "Physics"));
-    registerTeacher(new TeacherModel(3, "Prasiddha Rawel", 47000, "Prasiddha.P@gmail.com", "9876551237", "Dallu", "MSc", "Physics"));
+    registerTeacher(new TeacherModel(100, "Samir Adhikari", 50000, "Samir.4567@gmail.com", "9865327410", "Dallu", "MSc", "AI"));
+    registerTeacher(new TeacherModel(221, "Suman Lama", 25000, "Suman.LAMA@gmail.com", "9876543210", "Swayambu", "PhD", "Computing"));
+    registerTeacher(new TeacherModel(321, "Prasiddha Rawel", 47000, "Prasiddha.P@gmail.com", "9876551237", "Kalanki", "MSc", "Networking"));
+    registerTeacher(new TeacherModel(456, "Suyog Shrestha", 50000, "Suyog.567@gmail.com", "9801472356", "Dallu", "MSc", "AI"));
+    registerTeacher(new TeacherModel(789, "Dipsika Bajracharya", 45000, "Bajruu@gmail.com", "9812345678", "Kalimati", "PhD", "AI"));
+    registerTeacher(new TeacherModel(234, "Subrina Shrestha", 40000, "Subri58@gmail.com", "9812456789", "Dallu", "MSc", "Multimedia"));
+
 }
 
     /**
@@ -722,7 +761,7 @@ public class TeacherApp extends javax.swing.JFrame {
         if (username.isEmpty() || password.isEmpty()) {
             lblLoginError.setText("Please enter your username and password.");
         } // Check if username and password are incorrect
-        else if (!username.equals("admin") || !password.equals("admin")) {
+        else if (!username.equals("IslingTon") || !password.equals("12345")) {
             lblLoginError.setText("Username and password mismatch.");
         } // If credentials are correct, proceed to load the main screen
         else {
@@ -770,11 +809,34 @@ if (ValidationUtil.isValidTeacherId(teacherId, lblError) &&
     ValidationUtil.isValidPhoneNumber(phoneNumber, lblError) &&
     ValidationUtil.isValidAddress(address, lblError) &&
     ValidationUtil.isValidQualification(qualification, lblError) &&
-    ValidationUtil.isValidSpecialization(specialization, lblError)) {
+    ValidationUtil.isValidSpecialization(specialization, lblError)){
 
     // Convert teacherId and salary to their respective types
     int teacherIdValue = Integer.parseInt(teacherId);
     double salaryValue = Double.parseDouble(salary);
+    
+    // Check if teacher ID or name already exists in teacherList
+        for (TeacherModel teacher : teacherList) {
+            if (teacher.getTeacherId() == teacherIdValue) {
+                JOptionPane.showMessageDialog(this, "Teacher ID already exists. Please enter a new Teacher ID.", "Duplicate Error", JOptionPane.ERROR_MESSAGE);
+                return; // Exit the method if Teacher ID already exists
+            }
+
+            if (teacher.getTeacherName().equalsIgnoreCase(teacherName)) {
+                JOptionPane.showMessageDialog(this, "Teacher Name already exists. Please enter a new Name.", "Duplicate Error", JOptionPane.ERROR_MESSAGE);
+                return; // Exit the method if Teacher Name already exists
+            }
+            
+            if (teacher.getEmail().equalsIgnoreCase(email)) {
+                JOptionPane.showMessageDialog(this, "Email already exists. Please enter a new Email.", "Duplicate Error", JOptionPane.ERROR_MESSAGE);
+                return; // Exit the method if Email already exists
+            }
+
+            if (teacher.getPhoneNumber().equalsIgnoreCase(phoneNumber)) {
+                JOptionPane.showMessageDialog(this, "Phone Number already exists. Please enter a new Phone Number.", "Duplicate Error", JOptionPane.ERROR_MESSAGE);
+                return; // Exit the method if Phone Number already exists
+            }
+        }
 
     // Create a new TeacherModel instance
     TeacherModel teacherModel = new TeacherModel(
@@ -826,14 +888,20 @@ if (ValidationUtil.isValidTeacherId(teacherId, lblError) &&
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+     // Clear all the text fields
     txtfldTeacherid.setText("");
     txtfldTeacherName.setText("");
     txtfldSalary.setText("");
     txtfldEmail.setText("");
     txtfldPhoneNumber.setText("");
-    txtfldQualification.setText("");   
-    cmbSpecilization.setSelectedItem(0);
-    cmbAddress.setSelectedItem(0);
+    txtfldQualification.setText("");
+    
+    // Reset the combo boxes to their default value (index 0)
+    cmbSpecilization.setSelectedIndex(0); 
+    cmbAddress.setSelectedIndex(0); 
+
+    // Optionally show a confirmation or status message (optional)
+    JOptionPane.showMessageDialog(this, "All fields have been cleared.", "Reset", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void cmbAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbAddressActionPerformed
@@ -938,6 +1006,102 @@ if (ValidationUtil.isValidTeacherId(teacherId, lblError) &&
     }
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+         // TODO: Add your handling code here for selection
+        // Get the search value from the user
+    String searchValue = JOptionPane.showInputDialog(this, "Enter Teacher Name to search:");
+
+    if (searchValue != null && !searchValue.trim().isEmpty()) {
+        // Sort the list alphabetically by name
+        teacherList.sort((t1, t2) -> t1.getTeacherName().compareToIgnoreCase(t2.getTeacherName()));
+
+        // Perform the binary search
+        BinarySearch binarySearch = new BinarySearch();
+        TeacherModel selectedTeacher = binarySearch.searchByName(searchValue, teacherList);
+
+        if (selectedTeacher != null) {
+            // Display the selected teacher's details
+            JOptionPane.showMessageDialog(this, 
+                "Teacher Found: \n" +
+                "Name: " + selectedTeacher.getTeacherName() + "\n" +
+                "ID: " + selectedTeacher.getTeacherId() + "\n" +
+                "Salary: " + selectedTeacher.getSalary() + "\n" +
+                "Specialization: " + selectedTeacher.getSpecialization() + "\n" +
+                "Email: " + selectedTeacher.getEmail() + "\n" +
+                "Phone: " + selectedTeacher.getPhoneNumber() + "\n" +
+                "Address: " + selectedTeacher.getAddress() + "\n" +
+                "Qualification: " + selectedTeacher.getQualification());
+        } else {
+            // Show a message if the teacher is not found
+            JOptionPane.showMessageDialog(this, "Teacher not found!");
+        }
+    }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // Show sorting options
+     // Show sorting options
+    String[] options = {
+        "Sort by Teacher ID", 
+        "Sort by Name", 
+        "Sort by Salary"
+    };
+
+    // Show dialog to select the sorting criteria
+    int choice = JOptionPane.showOptionDialog(this, "Select Sort Criteria", "Sort Teachers",
+            JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+
+    // Handle the sorting based on the user's choice
+    if (choice == 0) {
+        // Sort by Teacher ID using Selection Sort
+        SelectionSort selectionSort = new SelectionSort();
+        teacherList = selectionSort.sortByTeacherId(teacherList, false);  // false for ascending order
+        
+        // Notify the user that the sorting was successful
+        JOptionPane.showMessageDialog(this, "Teachers sorted by Teacher ID using Selection Sort.");
+    } else if (choice == 1) {
+        // Sort by Name using Insertion Sort
+        InsertionSort insertionSort = new InsertionSort();
+        teacherList = insertionSort.sortByName(teacherList, false);  // false for ascending order
+        
+        // Notify the user that the sorting was successful
+        JOptionPane.showMessageDialog(this, "Teachers sorted by Name using Insertion Sort.");
+    } else if (choice == 2) {
+        // Sort by Salary using Merge Sort
+        MergeSort mergeSort = new MergeSort();
+        teacherList = mergeSort.sortBySalary(teacherList, false);  // false for ascending order
+        
+        // Notify the user that the sorting was successful
+        JOptionPane.showMessageDialog(this, "Teachers sorted by Salary using Merge Sort.");
+    }
+
+    // After sorting, update the table with the sorted data
+    updateTable();
+}
+
+private void updateTable() {
+    // Ensure you have a DefaultTableModel for your table
+    DefaultTableModel model = (DefaultTableModel) tblTeacher.getModel();
+    
+    // Clear any existing rows
+    model.setRowCount(0);
+    
+    // Add sorted teacher data back into the table
+    for (TeacherModel teacher : teacherList) {
+        model.addRow(new Object[]{
+            teacher.getTeacherId(), 
+            teacher.getTeacherName(), 
+            teacher.getSalary(),   
+            teacher.getEmail(),            
+            teacher.getPhoneNumber(),      
+            teacher.getAddress(),          
+            teacher.getQualification(),    
+            teacher.getSpecialization()    
+        });
+    }
+
+    }//GEN-LAST:event_jButton6ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -981,9 +1145,11 @@ if (ValidationUtil.isValidTeacherId(teacherId, lblError) &&
     private javax.swing.JComboBox<String> cmbAddress;
     private javax.swing.JComboBox<String> cmbSpecilization;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
